@@ -5,7 +5,7 @@ for p in find_packages():
     print("Installing package " + str(p))
 setup(
     name="webio",
-    version="0.0.1",
+    version="0.0.2",
     packages=find_packages(),
     include_package_data=False,
     url="",
