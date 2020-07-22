@@ -2,7 +2,7 @@ from controllers import app
 from controllers import socketio
 from random import random
 from flask import Flask, render_template, url_for, copy_current_request_context
-from controllers.socketioapp import thread as gbl_thread, thread_stop_event
+from controllers.socketioapp import gbl_thread, thread_stop_event
 from time import sleep
 from threading import Thread, Event
 
@@ -20,16 +20,16 @@ def randomNumberGenerator():
         socketio.sleep(5)
 
 def delayed_start():
-    sleep(3)
+    print("in delayed start")
+    sleep(1)
     randomNumberGenerator()
 
 @app.route('/')
 def index():
     global gbl_thread
-    if not gbl_thread.is_alive():
-        print("Starting Thread from index")
+    if not gbl_thread.isAlive():
+        print("Starting Thread from connect")
         gbl_thread = socketio.start_background_task(delayed_start)
-
     #only by sending this page first will the client be connected to the socketio instance
     return render_template('index.html')
 
@@ -42,7 +42,7 @@ def test_connect():
     #Start the random number generator thread only if the thread has not been started before.
     if not gbl_thread.isAlive():
         print("Starting Thread from connect")
-        thread = socketio.start_background_task(randomNumberGenerator)
+        gbl_thread = socketio.start_background_task(randomNumberGenerator)
 
 @socketio.on('disconnect', namespace='/test')
 def test_disconnect():
