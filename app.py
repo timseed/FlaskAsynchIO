@@ -47,7 +47,7 @@ def test_connect():
 
     #Start the random number generator thread only if the thread has not been started before.
     if not thread.isAlive():
-        print("Starting Thread")
+        print("Starting Thread from connect")
         thread = socketio.start_background_task(randomNumberGenerator)
 
 @socketio.on('disconnect', namespace='/test')
