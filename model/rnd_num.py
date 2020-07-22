@@ -2,9 +2,12 @@ from controllers import app
 from controllers import socketio
 from random import random
 from flask import Flask, render_template, url_for, copy_current_request_context
-from controllers.socketioapp import gbl_thread, thread_stop_event
+
 from time import sleep
 from threading import Thread, Event
+
+thread_stop_event = Event()
+gbl_thread = Thread()
 
 def randomNumberGenerator():
     """
@@ -26,10 +29,7 @@ def delayed_start():
 
 @app.route('/')
 def index():
-    global gbl_thread
-    if not gbl_thread.isAlive():
-        print("Starting Thread from connect")
-        gbl_thread = socketio.start_background_task(delayed_start)
+    print("Index hit")
     #only by sending this page first will the client be connected to the socketio instance
     return render_template('index.html')
 

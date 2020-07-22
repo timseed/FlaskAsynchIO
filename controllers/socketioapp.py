@@ -6,5 +6,3 @@ from threading import Thread, Event
 from controllers import app
 #turn the flask app into a socketio app
 socketio = SocketIO(app, async_mode=None, logger=True, engineio_logger=True)
-thread_stop_event = Event()
-gbl_thread = Thread()
