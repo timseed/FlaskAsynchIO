@@ -29,6 +29,24 @@ This is an even more stupid piece of HTML, which just says "Hi", but it here so 
 
 This is a better layed out project than most - I have split the functionality into clear areas (well I hope it is clear). Flask is nice to work with until you try and clean things up, and then it seems to get overly unpleasant. You have been warned.
 
+
+```text
+/setup.py
+  /__main__.py
+  /__init__.py
+  /README.md
+    /templates/index.html
+    /templates/Hello.html
+    /model/rnd_num.py
+    /model/hello.py
+    /model/__init__.py
+    /controllers/socketioapp.py
+    /controllers/app.py
+    /controllers/__init__.py
+      /static/js/application.js
+
+```
+
 ## Installing
 
 Please check out **setup.py** which maintains a list of requirements.
